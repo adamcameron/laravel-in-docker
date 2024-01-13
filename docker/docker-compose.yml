@@ -1,0 +1,59 @@
+version: "3"
+services:
+    nginx:
+        build:
+            context: nginx
+            dockerfile: Dockerfile
+
+        ports:
+            - "8009:80"
+
+        stdin_open: true
+        tty: true
+
+        volumes:
+            - ../public:/usr/share/nginx/html/
+
+        depends_on:
+            - php
+        restart: unless-stopped
+
+    php:
+        build:
+            context: php
+            dockerfile: Dockerfile
+
+        env_file:
+            - envVars.public
+            - envVars.private
+
+        stdin_open: true
+        tty: true
+
+        volumes:
+            - ..:/var/www
+
+        restart: unless-stopped
+
+    mariadb:
+        build:
+            context: mariadb
+            dockerfile: Dockerfile
+
+        env_file:
+            - envVars.public
+            - envVars.private
+
+        ports:
+            - "3309:3306"
+
+        stdin_open: true
+        tty: true
+
+        volumes:
+            - mariaDbData:/var/lib/mariadb
+
+        restart: unless-stopped
+
+volumes:
+    mariaDbData:
