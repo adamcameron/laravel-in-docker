@@ -3,3 +3,6 @@ MARIADB_HOST=mariadb
 MARIADB_PORT=3306
 MARIADB_DATABASE=db1
 MARIADB_USER=user1
+
+# make sure this matches the same value in docker/.env
+LARAVEL_STORAGE_PATH=/var/tmp/storage

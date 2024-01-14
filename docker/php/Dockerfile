@@ -27,5 +27,17 @@ RUN ["apt-get", "install", "-y", "symfony-cli"]
 WORKDIR /var/www
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
+ARG LARAVEL_STORAGE_PATH
+ENV LARAVEL_STORAGE_PATH $LARAVEL_STORAGE_PATH
+RUN mkdir -p $LARAVEL_STORAGE_PATH
+RUN mkdir -p $LARAVEL_STORAGE_PATH/app/public
+RUN mkdir -p $LARAVEL_STORAGE_PATH/framework/cache/data
+RUN mkdir -p $LARAVEL_STORAGE_PATH/framework/sessions
+RUN mkdir -p $LARAVEL_STORAGE_PATH/framework/testing
+RUN mkdir -p $LARAVEL_STORAGE_PATH/framework/views
+RUN mkdir -p $LARAVEL_STORAGE_PATH/logs
+RUN chown -R www-data:www-data $LARAVEL_STORAGE_PATH
+RUN chmod -R 777 $LARAVEL_STORAGE_PATH
+
 COPY --chmod=755 bin/entrypoint.sh /usr/local/bin/
 ENTRYPOINT entrypoint.sh

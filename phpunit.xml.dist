@@ -6,7 +6,7 @@
     cacheResult="false"
     testdox="true"
     failOnWarning="true"
-    bootstrap="tests/bootstrap.php"
+    bootstrap="Tests/bootstrap.php"
 >
     <coverage>
         <report>
@@ -15,13 +15,16 @@
     </coverage>
     <testsuites>
         <testsuite name="Functional tests">
-            <directory>tests/Functional/</directory>
+            <directory>Tests/Functional/</directory>
         </testsuite>
         <testsuite name="Integration tests">
-            <directory>tests/Integration/</directory>
+            <directory>Tests/Integration/</directory>
         </testsuite>
         <testsuite name="Unit tests">
-            <directory>tests/Unit/</directory>
+            <directory>Tests/Unit/</directory>
+        </testsuite>
+        <testsuite name="Feature tests">
+            <directory>Tests/Feature</directory>
         </testsuite>
     </testsuites>
     <source>

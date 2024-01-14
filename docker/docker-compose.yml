@@ -22,6 +22,8 @@ services:
         build:
             context: php
             dockerfile: Dockerfile
+            args:
+                - LARAVEL_STORAGE_PATH=${LARAVEL_STORAGE_PATH}
 
         env_file:
             - envVars.public
